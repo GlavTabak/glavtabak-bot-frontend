@@ -16,7 +16,7 @@ import {
   Routes,
 } from 'react-router-dom';
 
-import { routes } from '@/navigation/routes.tsx';
+import { routes } from '@root/app/navigation/routes';
 
 export const App: FC = () => {
   const miniApp = useMiniApp();

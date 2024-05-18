@@ -1,9 +1,9 @@
 import { useThemeParams } from '@tma.js/sdk-react';
 import type { FC } from 'react';
 
-import { DisplayData } from '@/components/DisplayData/DisplayData.tsx';
-import { Link } from '@/components/Link/Link.tsx';
-import { Page } from '@/components/Page/Page.tsx';
+import { DisplayData } from '@components/DisplayData/DisplayData';
+import { Link } from '@components/Link/Link';
+import { Page } from '@components/Page/Page';
 
 export const ThemeParamsPage: FC = () => {
   const themeParams = useThemeParams();

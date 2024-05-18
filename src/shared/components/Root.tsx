@@ -2,8 +2,8 @@ import { SDKProvider, useLaunchParams } from '@tma.js/sdk-react';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { type FC, useEffect, useMemo } from 'react';
 
-import { App } from '@/components/App.tsx';
-import { ErrorBoundary } from '@/components/ErrorBoundary.tsx';
+import { App } from '@components/App';
+import { ErrorBoundary } from '@components/ErrorBoundary';
 
 const ErrorBoundaryError: FC<{ error: unknown }> = ({ error }) => (
   <div>

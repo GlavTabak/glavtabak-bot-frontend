@@ -1,9 +1,9 @@
 import { type FC, type ReactNode, useMemo } from 'react';
 import { useInitData, useLaunchParams, type User } from '@tma.js/sdk-react';
 
-import { DisplayData, type DisplayDataRow } from '@/components/DisplayData/DisplayData.tsx';
-import { Link } from '@/components/Link/Link.tsx';
-import { Page } from '@/components/Page/Page.tsx';
+import { DisplayData, type DisplayDataRow } from '@components/DisplayData/DisplayData';
+import { Link } from '@components/Link/Link';
+import { Page } from '@components/Page/Page';
 
 import './InitDataPage.css';
 

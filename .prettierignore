@@ -1,0 +1,14 @@
+# Ignore artifacts:
+.node_modules
+.pnp.*
+.idea
+.yarn/*
+*.css
+
+# next.js
+.next/
+.out/
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts

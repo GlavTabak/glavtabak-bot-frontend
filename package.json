@@ -1,9 +1,8 @@
 {
-  "name": "reactjs-template",
+  "name": "glav_tabak_web_app",
   "private": true,
   "version": "0.0.1",
   "type": "module",
-  "homepage": "https://telegram-mini-apps.github.io/reactjs-template",
   "scripts": {
     "deploy": "gh-pages -d dist",
     "dev": "vite",
@@ -20,7 +19,8 @@
     "eruda": "^3.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.23.0"
+    "react-router-dom": "^6.23.0",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.2.0",
@@ -37,6 +37,12 @@
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.8.0",
     "vite": "^5.2.11",
-    "vite-tsconfig-paths": "^4.3.2"
-  }
+    "vite-tsconfig-paths": "^4.3.2",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.14",
+    "tailwind-merge": "^2.3.0",
+    "tailwindcss": "^3.4.3",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "packageManager": "pnpm@9.1.1+sha512.14e915759c11f77eac07faba4d019c193ec8637229e62ec99eefb7cf3c3b75c64447882b7c485142451ee3a6b408059cdfb7b7fa0341b975f12d0f7629c71195"
 }

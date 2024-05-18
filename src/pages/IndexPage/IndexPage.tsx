@@ -1,8 +1,8 @@
 import type { FC } from 'react';
 
-import { Link } from '@/components/Link/Link.tsx';
-import { Page } from '@/components/Page/Page.tsx';
-import { routes } from '@/navigation/routes.tsx';
+import { Link } from '@components/Link/Link';
+import { Page } from '@components/Page/Page';
+import { routes } from '@root/app/navigation/routes';
 
 import './IndexPage.css';
 
