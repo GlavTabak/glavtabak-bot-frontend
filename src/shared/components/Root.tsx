@@ -1,4 +1,5 @@
 import { SDKProvider, useLaunchParams } from '@tma.js/sdk-react';
+import { NextUIProvider } from '@nextui-org/system';
 import { type FC, useEffect } from 'react';
 
 import { App } from '@components/App';
@@ -30,14 +31,16 @@ const Inner: FC = () => {
   }, [debug]);
 
   return (
-      <SDKProvider acceptCustomStyles debug={debug}>
-        <App/>
-      </SDKProvider>
+    <SDKProvider acceptCustomStyles debug={debug}>
+      <NextUIProvider>
+        <App />
+      </NextUIProvider>
+    </SDKProvider>
   );
 };
 
 export const Root: FC = () => (
   <ErrorBoundary fallback={ErrorBoundaryError}>
-    <Inner/>
+    <Inner />
   </ErrorBoundary>
 );
