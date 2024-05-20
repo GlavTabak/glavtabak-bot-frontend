@@ -8,6 +8,10 @@ import react from '@vitejs/plugin-react-swc';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
+  server: {
+    host: '127.0.0.1',
+    port: 3000,
+  },
   // Uncomment the next lines in case, you would like to run Vite dev server using HTTPS and in case,
   // you have key and certificate. You retrieve your certificate and key using mkcert.
   // Learn more:
