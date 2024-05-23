@@ -1,1 +1,1 @@
-export { IQOSAccessories } from './iqos-accessories';
+export { shopData } from './shop-data';

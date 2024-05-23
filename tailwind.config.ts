@@ -5,7 +5,7 @@ import tailwindCssAnimate from 'tailwindcss-animate';
 const config = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@nextui-org/theme/dist/components/(button|ripple|spinner).js"
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
     screens: {
@@ -36,6 +36,7 @@ const config = {
   corePlugins: {
     float: false,
   },
+  darkMode: 'class',
   plugins: [tailwindCssAnimate,nextui()],
 } satisfies Config;
 

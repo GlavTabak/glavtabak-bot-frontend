@@ -1,30 +1,25 @@
+import { Card } from '@components/ui';
+import { dictionaryRu } from '@root/app/dictionary';
+import { useShopData } from '@root/shared/lib/hooks';
 import type { FC } from 'react';
 
-import { Link } from '@components/Link/Link';
-import { Page } from '@components/Page/Page';
-import { routes } from '@root/app/navigation/routes';
-
-import './IndexPage.css';
-
-export const IndexPage: FC = () => (
-  <Page title="Home Page">
-    <p>
-      This page is a home page in this boilerplate. You can use the links below to visit other
-      pages with their own functionality.
-    </p>
-    <ul className="index-page__links">
-      {routes.map(({ path, title, icon }) => title && (
-        <li className="index-page__link-item" key={path}>
-          <Link className="index-page__link" to={path}>
-            {icon && (
-              <i className="index-page__link-icon">
-                {icon}
-              </i>
-            )}
-            {title}
-          </Link>
-        </li>
-      ))}
-    </ul>
-  </Page>
-);
+export const IndexPage: FC = () => {
+  const shopData = useShopData();
+  
+  return (
+    <main>
+      <h1 className="mb-10 text-center font-bold text-lg">{dictionaryRu.mainPageTitle}</h1>
+      <ul className="grid grid-cols-2 gap-4">
+        {shopData.map((shopItem) => (
+          <li key={shopItem.id}>
+            {/* Оборачиваем в линк, чтобы открывалось дальше */}
+            <Card
+              cardText={shopItem.groupName}
+              cardImg={shopItem.groupImg}
+            />
+          </li>
+        ))}
+      </ul>
+    </main>
+  );
+};

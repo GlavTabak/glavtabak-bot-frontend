@@ -1,0 +1,1 @@
+export { useShopData } from './useShopData';
