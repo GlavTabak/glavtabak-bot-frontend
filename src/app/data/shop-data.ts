@@ -7,7 +7,7 @@ import devicesImg from '@root/app/assets/img/devices.jpeg';
 import eCigaretteImg from '@root/app/assets/img/e-cigarette.jpg';
 import saltLiquidImg from '@root/app/assets/img/salt.jpg';
 
-// TODO: здесь будут реальные данные вместо пустых объектов
+// TODO: здесь будут реальные данные вместо скопированных одних и тех же
 export const shopData = [
   {
     id: '1',
@@ -19,30 +19,30 @@ export const shopData = [
     id: '2',
     groupName: dictionaryRu.chewingTobacco,
     groupImg: chewingTobaccoImg,
-    groupData: {},
+    groupData: IQOSAccessories,
   },
   {
     id: '3',
     groupName: dictionaryRu.alkalineLiquids,
     groupImg: alkalineLiquidImg,
-    groupData: {},
+    groupData: IQOSAccessories,
   },
   {
     id: '4',
     groupName: dictionaryRu.saltLiquids,
     groupImg: saltLiquidImg,
-    groupData: {},
+    groupData: IQOSAccessories,
   },
   {
     id: '5',
     groupName: dictionaryRu.eCigarette,
     groupImg: eCigaretteImg,
-    groupData: {},
+    groupData: IQOSAccessories,
   },
   {
     id: '6',
     groupName: dictionaryRu.devices,
     groupImg: devicesImg,
-    groupData: {},
+    groupData: IQOSAccessories,
   },
 ]

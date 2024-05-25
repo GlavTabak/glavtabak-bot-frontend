@@ -9,7 +9,7 @@ interface CardProps {
 
 export const Card: FC<CardProps> = ({cardText, cardImg}) => {
   return (
-    <CardBase shadow="sm" className="w-full" isPressable onPress={() => console.log("item pressed")}>
+    <CardBase shadow="sm" className="w-full" isPressable>
       <CardBody className="overflow-visible p-0">
         <Image
           shadow="sm"

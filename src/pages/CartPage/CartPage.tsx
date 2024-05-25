@@ -1,4 +1,4 @@
-export const ShopItemPage = () => {
+export const CartPage = () => {
   return (
     <div>
       

@@ -1,6 +1,5 @@
 import {nextui} from '@nextui-org/theme';
 import type { Config } from 'tailwindcss';
-import tailwindCssAnimate from 'tailwindcss-animate';
 
 const config = {
   content: [
@@ -19,25 +18,28 @@ const config = {
       padding: '2rem',
     },
     extend: {
-      keyframes: {
-        'shake-horizontal': {
-          '0%, 100%': { transform: 'translateX(0)' },
-          '10%, 30%, 50%, 70%': { transform: 'translateX(-10px)' },
-          '20%, 40%, 60%': { transform: 'translateX(10px)' },
-          '80%': { transform: 'translateX(8px)' },
-          '90%': { transform: 'translateX(-8px)' },
-        },
-      },
-      animation: {
-        'shake-horizontal': 'shake-horizontal 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both',
-      },
+      colors: {
+        "theme-accent-text-color": 'var(--tg-theme-accent-text-color)',
+        "theme-bg-color": 'var(--tg-theme-bg-color)',
+        "theme-button-color": 'var(--tg-theme-button-color)',
+        "theme-button-text-color": 'var(--tg-theme-button-text-color)',
+        "theme-destructive-text-color": 'var(--tg-theme-destructive-text-color)',
+        "theme-header-bg-color": 'var(--tg-theme-header-bg-color)',
+        "theme-hint-color": 'var(--tg-theme-hint-color)',
+        "theme-link-color": 'var(--tg-theme-link-color)',
+        "theme-secondary-bg-color": 'var(--tg-theme-secondary-bg-color)',
+        "theme-section-bg-color": 'var(--tg-theme-section-bg-color)',
+        "theme-section-header-text-color": 'var(--tg-theme-section-header-text-color)',
+        "theme-subtitle-text-color": 'var(--tg-theme-subtitle-text-color)',
+        "theme-text-color": 'var(--tg-theme-text-color)',
+      }
     },
   },
   corePlugins: {
     float: false,
   },
   darkMode: 'class',
-  plugins: [tailwindCssAnimate,nextui()],
+  plugins: [nextui()],
 } satisfies Config;
 
 export default config;

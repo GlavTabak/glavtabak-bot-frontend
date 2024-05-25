@@ -1,3 +1,5 @@
+import { AppPaths } from '@root/app/navigation';
+import { IndexPage, ShopGroupPage, ShopSubgroupPage } from '@root/pages';
 import { useIntegration } from '@tma.js/react-router-integration';
 import {
   bindMiniAppCSSVars,
@@ -15,8 +17,6 @@ import {
   Router,
   Routes,
 } from 'react-router-dom';
-
-import { routes } from '@root/app/navigation/routes';
 
 export const App: FC = () => {
   const miniApp = useMiniApp();
@@ -50,8 +50,17 @@ export const App: FC = () => {
   return (
     <Router location={location} navigator={reactNavigator}>
       <Routes>
-        {routes.map((route) => <Route key={route.path} {...route} />)}
-        <Route path="*" element={<Navigate to="/"/>}/>
+        <Route path={AppPaths.ROOT}>
+          <Route index element={<IndexPage />} />
+          <Route path={AppPaths.SHOP}>
+            <Route path={AppPaths.SHOP_GROUP_NAME} element={<ShopGroupPage />} />
+            <Route
+              path={`${AppPaths.SHOP_GROUP_NAME}/${AppPaths.SHOP_SUBGROUP}/${AppPaths.SHOP_SUBGROUP_NAME}`}
+              element={<ShopSubgroupPage />}
+            />
+          </Route>
+        </Route>
+        <Route path="*" element={<Navigate to={AppPaths.ROOT} />} />
       </Routes>
     </Router>
   );
