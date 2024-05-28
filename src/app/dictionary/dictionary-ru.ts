@@ -3,6 +3,8 @@ export const dictionaryRu = {
   notFoundPageTitle: 'Страница с таким адресом не найдена',
   groupPageTitle: 'Разделы категории',
   subgroupPageTitle: 'Товары раздела',
+  cart: 'Корзина',
+  totalPrice: 'Итоговая сумма',
   'iqosAccessories': 'Аксессуары для IQOS',
   'alkalineLiquids': 'Жидкость Щелочная',
   'saltLiquids': 'Жидкость солевая',

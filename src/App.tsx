@@ -1,3 +1,4 @@
+import { AppLayout } from '@root/app/layout/AppLayout';
 import { AppPaths } from '@root/app/navigation';
 import { CartPage, IndexPage, ShopGroupPage, ShopSubgroupPage } from '@root/pages';
 import { useIntegration } from '@tma.js/react-router-integration';
@@ -49,20 +50,22 @@ export const App: FC = () => {
 
   return (
     <Router location={location} navigator={reactNavigator}>
-      <Routes>
-        <Route path={AppPaths.ROOT}>
-          <Route index element={<IndexPage />} />
-          <Route path={AppPaths.SHOP}>
-            <Route path={AppPaths.SHOP_GROUP_NAME} element={<ShopGroupPage />} />
-            <Route
-              path={`${AppPaths.SHOP_GROUP_NAME}/${AppPaths.SHOP_SUBGROUP}/${AppPaths.SHOP_SUBGROUP_NAME}`}
-              element={<ShopSubgroupPage />}
-            />
+      <AppLayout>
+        <Routes>
+          <Route path={AppPaths.ROOT}>
+            <Route index element={<IndexPage />} />
+            <Route path={AppPaths.SHOP}>
+              <Route path={AppPaths.SHOP_GROUP_NAME} element={<ShopGroupPage />} />
+              <Route
+                path={`${AppPaths.SHOP_GROUP_NAME}/${AppPaths.SHOP_SUBGROUP}/${AppPaths.SHOP_SUBGROUP_NAME}`}
+                element={<ShopSubgroupPage />}
+              />
+            </Route>
+            <Route path={AppPaths.CART} index element={<CartPage />} />
           </Route>
-          <Route path={AppPaths.CART} index element={<CartPage />} />
-        </Route>
-        <Route path="*" element={<Navigate to={AppPaths.ROOT} />} />
-      </Routes>
+          <Route path="*" element={<Navigate to={AppPaths.ROOT} />} />
+        </Routes>
+      </AppLayout>
     </Router>
   );
 };

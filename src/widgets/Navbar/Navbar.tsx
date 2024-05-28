@@ -6,7 +6,7 @@ import {
   NavbarItem,
   Image,
 } from '@nextui-org/react';
-import { ShopCart } from '@root/entities';
+import { ShopCartLinkIcon } from '@root/entities';
 
 export const Navbar = () => {
   return (
@@ -20,7 +20,7 @@ export const Navbar = () => {
       </NavbarBrand>
       <NavbarContent justify="end">
         <NavbarItem>
-          <ShopCart />
+          <ShopCartLinkIcon />
         </NavbarItem>
       </NavbarContent>
     </NavbarBase>

@@ -1,1 +1,1 @@
-export { ShopCart, useCartStore } from './ShopCart';
+export { ShopCartLinkIcon, useCartStore } from './ShopCart';

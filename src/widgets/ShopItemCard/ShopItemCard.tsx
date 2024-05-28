@@ -6,16 +6,24 @@ import { useCartStore } from '@root/entities';
 interface ShopItemCardProps {
   itemData: {
     itemName: string;
+    itemPrice: number;
     itemDescription?: string;
     itemImg?: string;
-    itemPrice?: number;
   };
 }
 
 export const ShopItemCard: FC<ShopItemCardProps> = ({ itemData }) => {
   const { itemName, itemImg, itemPrice } = itemData;
   const { cart, addToCart, removeFromCart } = useCartStore((state) => state);
-  const currentItemCount = cart[itemName || ''] || 0;
+  const currentItemCount = cart[itemName || '']?.quantity || 0;
+
+  const removeItemHandler = () => {
+    removeFromCart({ id: itemName, price: itemPrice })
+  };
+
+  const addItemHandler = () => {
+    addToCart({ id: itemName, price: itemPrice })
+  };
 
   return (
     <Card shadow="sm" fullWidth className="h-full">
@@ -39,11 +47,19 @@ export const ShopItemCard: FC<ShopItemCardProps> = ({ itemData }) => {
       <CardFooter className="items-center justify-center text-small">
         {itemPrice && <b>{`${itemPrice} ₽`}</b>}
         <div className="flex items-center gap-5">
-          <Button isIconOnly variant="light" color="danger" aria-label="Remove from cart" onPress={() => removeFromCart(itemName)}>
+          <Button
+            isIconOnly variant="light" color="danger" aria-label="Remove from cart" onPress={removeItemHandler}
+          >
             <Icon icon="heroicons:minus-circle" className="size-8" />
           </Button>
           <div className="select-none font-bold text-lg">{currentItemCount}</div>
-          <Button isIconOnly variant="light" color="success" aria-label="Add to cart" onPress={() => addToCart(itemName)}>
+          <Button
+            isIconOnly
+            variant="light"
+            color="success"
+            aria-label="Add to cart"
+            onPress={addItemHandler}
+          >
             <Icon icon="heroicons:plus-circle" className="size-8" />
           </Button>
         </div>

@@ -2,7 +2,6 @@ import ReactDOM from 'react-dom/client';
 import { App } from './App';
 import { ErrorBoundary, ErrorBoundaryError } from '@components/service';
 import { NextUIProvider } from '@nextui-org/react';
-import { AppLayout } from '@root/app/layout/AppLayout';
 import { SDKProvider, useLaunchParams } from '@tma.js/sdk-react';
 import { type FC, useEffect } from 'react';
 
@@ -22,9 +21,7 @@ const Root: FC = () => {
     <ErrorBoundary fallback={ErrorBoundaryError}>
       <SDKProvider acceptCustomStyles debug={debug}>
         <NextUIProvider>
-          <AppLayout>
-            <App />
-          </AppLayout>
+          <App />
         </NextUIProvider>
       </SDKProvider>
     </ErrorBoundary>
