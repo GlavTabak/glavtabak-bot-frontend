@@ -1,4 +1,3 @@
-import { Icon } from '@iconify/react';
 import logoImg from '@root/app/assets/img/logo.jpg';
 import {
   Navbar as NavbarBase,
@@ -7,10 +6,11 @@ import {
   NavbarItem,
   Image,
 } from '@nextui-org/react';
+import { ShopCart } from '@root/entities';
 
 export const Navbar = () => {
   return (
-    <NavbarBase className="rounded-xl">
+    <NavbarBase className="rounded-xl" as="nav">
       <NavbarBrand>
         <Image
           alt="Glav Tabak Logo"
@@ -20,7 +20,7 @@ export const Navbar = () => {
       </NavbarBrand>
       <NavbarContent justify="end">
         <NavbarItem>
-          <Icon icon="heroicons:shopping-cart" className="size-8" color="black" />
+          <ShopCart />
         </NavbarItem>
       </NavbarContent>
     </NavbarBase>

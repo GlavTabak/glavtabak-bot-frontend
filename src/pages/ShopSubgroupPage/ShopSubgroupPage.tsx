@@ -1,5 +1,6 @@
 import { useShopData } from '@hooks';
 import { dictionaryRu } from '@root/app/dictionary';
+import { ShopItemCard } from '@root/widgets';
 import { useParams } from 'react-router-dom';
 
 export const ShopSubgroupPage = () => {
@@ -18,7 +19,7 @@ export const ShopSubgroupPage = () => {
       <ul className="grid grid-cols-2 gap-4">
         {shopSubgroupData.items.map((shopItem) => (
           <li key={shopItem.itemName}>
-            <div className="bg-amber-300 p-4 rounded">{shopItem.itemName}</div>
+            <ShopItemCard itemData={shopItem} />
           </li>
         ))}
       </ul>

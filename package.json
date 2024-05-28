@@ -2,6 +2,7 @@
   "name": "glav_tabak_web_app",
   "private": true,
   "version": "0.0.2",
+  "type": "module",
   "scripts": {
     "deploy": "gh-pages -d dist",
     "dev": "vite",

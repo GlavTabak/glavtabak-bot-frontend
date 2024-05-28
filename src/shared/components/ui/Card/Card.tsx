@@ -1,28 +1,35 @@
-import { Card as CardBase, CardBody, CardFooter, Image } from "@nextui-org/react";
+import { Card as CardBase, CardBody, CardFooter, CardHeader, Image } from '@nextui-org/react';
 import type { FC } from 'react';
 
 interface CardProps {
   cardText: string;
   cardTitle?: string;
   cardImg?: string;
-} 
+}
 
-export const Card: FC<CardProps> = ({cardText, cardImg}) => {
+export const Card: FC<CardProps> = ({ cardText, cardImg, cardTitle }) => {
   return (
-    <CardBase shadow="sm" className="w-full" isPressable>
+    <CardBase shadow="sm" fullWidth isPressable>
+      {cardTitle && (
+        <CardHeader>
+          <b>{cardTitle}</b>
+        </CardHeader>
+      )}
       <CardBody className="overflow-visible p-0">
-        <Image
-          shadow="sm"
-          radius="lg"
-          width="100%"
-          alt={cardText}
-          className="w-full object-cover h-[140px]"
-          src={cardImg}
-        />
+        {cardImg && (
+          <Image
+            shadow="sm"
+            radius="lg"
+            width="100%"
+            alt={cardText}
+            className="h-[140px] w-full object-cover"
+            src={cardImg}
+          />
+        )}
       </CardBody>
-      <CardFooter className="text-small justify-center items-center">
+      <CardFooter className="items-center justify-center text-small">
         <b>{cardText}</b>
       </CardFooter>
     </CardBase>
   );
-}
+};
