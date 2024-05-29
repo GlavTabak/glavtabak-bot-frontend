@@ -1,15 +1,22 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@components/ui';
 import { useDictionary } from '@hooks';
-import { useCartStore } from '@root/entities';
-import { useTotalPriceStore } from '@root/entities/ShopCart';
-import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
-import { cartColumns } from './model/columns';
+import { Button } from '@nextui-org/react';
+import { useCartStore, useTotalCartPrice } from '@root/entities';
+import { flexRender, getCoreRowModel, useReactTable, type ColumnDef } from '@tanstack/react-table';
+
+type CartItem = {
+  itemName: string;
+  quantity: number;
+  price: number;
+  totalPrice: number;
+}
 
 export const Cart = () => {
   const d = useDictionary();
   const cart = useCartStore((state) => state.cart);
-  const totalPrice = useTotalPriceStore();
-  const transformedCart = Object.entries(cart)
+  const resetCart = useCartStore((state) => state.resetCart);
+  const totalPrice = useTotalCartPrice();
+  const transformedCart: CartItem[] = Object.entries(cart)
     .map(([key, { price, quantity, totalPrice }]) => (
       {
         itemName: key,
@@ -19,11 +26,38 @@ export const Cart = () => {
       }
     ));
 
+  const cartColumns: ColumnDef<CartItem>[] = [
+    {
+      accessorKey: 'itemName',
+      header: d.itemName,
+    },
+    {
+      accessorKey: 'quantity',
+      header: d.quantity,
+    },
+    {
+      accessorKey: 'price',
+      header: d.price,
+    },
+    {
+      accessorKey: 'totalPrice',
+      header: d.totalPriceTable,
+    },
+  ]
+
   const table = useReactTable({
     data: transformedCart,
     columns: cartColumns,
     getCoreRowModel: getCoreRowModel(),
   });
+
+  const clearCartHandler = () => {
+    resetCart()
+  };
+  
+  if (Object.keys(cart).length === 0) {
+    return <h1 className="text-center">{d.cartIsEmpty}</h1>;
+  }
 
   return (
     <div className="space-y-5">
@@ -50,7 +84,10 @@ export const Cart = () => {
           ))}
         </TableBody>
       </Table>
-      <div className="ml-auto">{d.totalPrice}: {totalPrice}</div>
+      <div className="flex items-center justify-between">
+        <Button variant="ghost" color="warning" onPress={clearCartHandler}>{d.clearCart}</Button>
+        <div className="font-semibold text-lg">{d.totalPrice}: {totalPrice}</div>
+      </div>
     </div>
   );
 };

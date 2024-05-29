@@ -1,5 +1,4 @@
-import { create, useStore } from 'zustand';
-import { derive } from 'derive-zustand';
+import { create } from 'zustand';
 import type { Cart } from '../../types/cart';
 
 interface CartState {
@@ -62,16 +61,4 @@ const useCartStore = create<CartState & CartActions>()((set) => (
   }
 ));
 
-const totalPriceStore = derive<number>((get) => { 
-  const cartStore = get(useCartStore);
-  return Object.values(cartStore.cart).reduce((accum, { totalPrice }) => accum + totalPrice, 0);
-});
-const useTotalPriceStore = () => useStore(totalPriceStore);
-
-const totalQuantityStore = derive<number>((get) => {
-  const cartStore = get(useCartStore);
-  return Object.values(cartStore.cart).reduce((accum, { quantity }) => accum + quantity, 0);
-});
-const useTotalQuantityStore = () => useStore(totalQuantityStore);
-
-export { useCartStore, useTotalPriceStore, useTotalQuantityStore }
+export { useCartStore }

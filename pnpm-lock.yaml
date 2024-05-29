@@ -29,9 +29,6 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
-      derive-zustand:
-        specifier: ^0.1.0
-        version: 0.1.0(zustand@4.5.2(@types/react@18.3.2)(react@18.3.1))
       eruda:
         specifier: ^3.0.1
         version: 3.0.1
@@ -1885,11 +1882,6 @@ packages:
   define-properties@1.2.1:
     resolution: {integrity: sha512-8QmQKqEASLd5nx0U1B1okLElbUuuttJ/AnYmRXbbbGDWh6uS208EjD4Xqq/I9wK7u0v6O08XhTWnt5XtEbR6Dg==}
     engines: {node: '>= 0.4'}
-
-  derive-zustand@0.1.0:
-    resolution: {integrity: sha512-/SwBSuRhqj6oPp9r0JoEtl4Jj5AKQubDgbEFjQ+4cIGcQujn/V2jfuFRILQE3tbDMywoaD3O/oPEJhD+Zf7U8Q==}
-    peerDependencies:
-      zustand: '>=4.1.0'
 
   detect-node-es@1.1.0:
     resolution: {integrity: sha512-ypdmJU/TbBby2Dxibuv7ZLW3Bs1QEmM7nHjEANfohJLvE0XVujisn1qPJcZxg+qDucsr+bP6fLD1rPS3AhJ7EQ==}
@@ -5779,10 +5771,6 @@ snapshots:
       define-data-property: 1.1.4
       has-property-descriptors: 1.0.2
       object-keys: 1.1.1
-
-  derive-zustand@0.1.0(zustand@4.5.2(@types/react@18.3.2)(react@18.3.1)):
-    dependencies:
-      zustand: 4.5.2(@types/react@18.3.2)(react@18.3.1)
 
   detect-node-es@1.1.0: {}
 

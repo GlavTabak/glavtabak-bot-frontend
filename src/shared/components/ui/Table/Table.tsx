@@ -27,7 +27,7 @@ const TableHead = forwardRef<HTMLTableCellElement, ThHTMLAttributes<HTMLTableCel
     <th
       ref={ref}
       className={cn(
-        'px-3.5 py-5 text-left align-middle font-normal desktop:px-[30px] [&:has([role=checkbox])]:pr-0',
+        'p-3.5 text-left align-middle desktop:p-5',
         className,
       )}
       {...props}
@@ -46,7 +46,7 @@ const TableRow = forwardRef<HTMLTableRowElement, HTMLAttributes<HTMLTableRowElem
     <tr
       ref={ref}
       className={cn(
-        'border-b border-b-gray-500 transition-colors last:border-0 data-[state=selected]:bg-green-200',
+        'border-b border-theme-text-color last:border-0',
         className,
       )}
       {...props}
@@ -60,8 +60,7 @@ const TableCell = forwardRef<HTMLTableCellElement, TdHTMLAttributes<HTMLTableCel
     <td
       ref={ref}
       className={cn(
-        'px-3.5 py-2.5 align-middle text-black first:font-semibold desktop:px-5 ' +
-          '[&:has([role=checkbox])]:pr-0',
+        'px-3.5 py-2.5 align-middle desktop:px-5',
         className,
       )}
       {...props}
@@ -72,14 +71,14 @@ TableCell.displayName = 'TableCell';
 
 const TableFooter = forwardRef<HTMLTableSectionElement, HTMLAttributes<HTMLTableSectionElement>>(
   ({ className, ...props }, ref) => (
-    <tfoot ref={ref} className={cn('bg-gray-700 font-medium', className)} {...props} />
+    <tfoot ref={ref} className={cn('font-medium', className)} {...props} />
   ),
 );
 TableFooter.displayName = 'TableFooter';
 
 const TableCaption = forwardRef<HTMLTableCaptionElement, HTMLAttributes<HTMLTableCaptionElement>>(
   ({ className, ...props }, ref) => (
-    <caption ref={ref} className={cn('mt-4 text-sm text-white', className)} {...props} />
+    <caption ref={ref} className={cn('mt-4 text-sm', className)} {...props} />
   ),
 );
 TableCaption.displayName = 'TableCaption';

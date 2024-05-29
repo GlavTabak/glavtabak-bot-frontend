@@ -6,23 +6,23 @@ import { useCartStore } from '@root/entities';
 interface ShopItemCardProps {
   itemData: {
     itemName: string;
-    itemPrice: number;
+    price: number;
     itemDescription?: string;
     itemImg?: string;
   };
 }
 
 export const ShopItemCard: FC<ShopItemCardProps> = ({ itemData }) => {
-  const { itemName, itemImg, itemPrice } = itemData;
+  const { itemName, itemImg, price } = itemData;
   const { cart, addToCart, removeFromCart } = useCartStore((state) => state);
   const currentItemCount = cart[itemName || '']?.quantity || 0;
 
   const removeItemHandler = () => {
-    removeFromCart({ id: itemName, price: itemPrice })
+    removeFromCart({ id: itemName, price: price })
   };
 
   const addItemHandler = () => {
-    addToCart({ id: itemName, price: itemPrice })
+    addToCart({ id: itemName, price: price })
   };
 
   return (
@@ -44,8 +44,8 @@ export const ShopItemCard: FC<ShopItemCardProps> = ({ itemData }) => {
           />
         )}
       </CardBody>
-      <CardFooter className="items-center justify-center text-small">
-        {itemPrice && <b>{`${itemPrice} ₽`}</b>}
+      <CardFooter className="grid justify-items-center gap-y-2.5 text-small">
+        {price && <b className="text-lg">{`${price} ₽`}</b>}
         <div className="flex items-center gap-5">
           <Button
             isIconOnly variant="light" color="danger" aria-label="Remove from cart" onPress={removeItemHandler}

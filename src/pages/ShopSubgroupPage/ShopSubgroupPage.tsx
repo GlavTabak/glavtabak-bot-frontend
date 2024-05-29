@@ -17,9 +17,12 @@ export const ShopSubgroupPage = () => {
     <div>
       <h1 className="mb-10 text-center">{`${dictionaryRu.subgroupPageTitle} ${shopSubgroupData.subgroupName}`}</h1>
       <ul className="grid grid-cols-2 gap-4">
-        {shopSubgroupData.items.map((shopItem) => (
-          <li key={shopItem.itemName}>
-            <ShopItemCard itemData={shopItem} />
+        {shopSubgroupData.items.map(({itemName, price}) => (
+          <li key={itemName}>
+            <ShopItemCard itemData={{
+              itemName,
+              price: parseInt(price)
+            }} />
           </li>
         ))}
       </ul>

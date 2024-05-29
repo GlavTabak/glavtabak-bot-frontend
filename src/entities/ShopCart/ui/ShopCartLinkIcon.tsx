@@ -2,10 +2,10 @@ import { Link } from '@components/service';
 import { Icon } from '@iconify/react';
 import { Badge } from '@nextui-org/react';
 import { AppPaths } from '@root/app/navigation';
-import { useTotalQuantityStore } from '../model/store/cart';
+import { useTotalQuantity } from '../';
 
 export const ShopCartLinkIcon = () => {
-  const totalQuantity = useTotalQuantityStore();
+  const totalQuantity = useTotalQuantity();
 
   return (
     <Link to={AppPaths.CART}>
