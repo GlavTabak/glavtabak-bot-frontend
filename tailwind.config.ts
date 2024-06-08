@@ -1,4 +1,4 @@
-import {nextui} from '@nextui-org/theme';
+import { nextui } from '@nextui-org/theme';
 import type { Config } from 'tailwindcss';
 
 const config = {
@@ -39,7 +39,16 @@ const config = {
     float: false,
   },
   darkMode: 'class',
-  plugins: [nextui()],
+  plugins: [nextui({
+    themes: {
+      light : {
+        colors: {
+          background: 'var(--tg-theme-secondary-bg-color)',
+          foreground: 'var(--tg-theme-text-color)',
+        }
+      }
+    }
+  })],
 } satisfies Config;
 
 export default config;

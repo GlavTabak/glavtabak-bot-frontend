@@ -1,6 +1,6 @@
 import { AppLayout } from '@root/app/layout/AppLayout';
 import { AppPaths } from '@root/app/navigation';
-import { CartPage, IndexPage, ShopGroupPage, ShopSubgroupPage } from '@root/pages';
+import { CartPage, CheckoutPage, IndexPage, ShopGroupPage, ShopSubgroupPage } from '@root/pages';
 import { useIntegration } from '@tma.js/react-router-integration';
 import {
   bindMiniAppCSSVars,
@@ -62,6 +62,7 @@ export const App: FC = () => {
               />
             </Route>
             <Route path={AppPaths.CART} index element={<CartPage />} />
+            <Route path={AppPaths.CHECKOUT} index element={<CheckoutPage />} />
           </Route>
           <Route path="*" element={<Navigate to={AppPaths.ROOT} />} />
         </Routes>

@@ -1,6 +1,8 @@
+import { Link } from '@components/service';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@components/ui';
 import { useDictionary } from '@hooks';
 import { Button } from '@nextui-org/react';
+import { AppPaths } from '@root/app/navigation';
 import { useCartStore, useTotalCartPrice } from '@root/entities';
 import { flexRender, getCoreRowModel, useReactTable, type ColumnDef } from '@tanstack/react-table';
 
@@ -43,7 +45,7 @@ export const Cart = () => {
       accessorKey: 'totalPrice',
       header: d.totalPriceTable,
     },
-  ]
+  ];
 
   const table = useReactTable({
     data: transformedCart,
@@ -52,9 +54,9 @@ export const Cart = () => {
   });
 
   const clearCartHandler = () => {
-    resetCart()
+    resetCart();
   };
-  
+
   if (Object.keys(cart).length === 0) {
     return <h1 className="text-center">{d.cartIsEmpty}</h1>;
   }
@@ -87,6 +89,11 @@ export const Cart = () => {
       <div className="flex items-center justify-between">
         <Button variant="ghost" color="warning" onPress={clearCartHandler}>{d.clearCart}</Button>
         <div className="font-semibold text-lg">{d.totalPrice}: {totalPrice}</div>
+      </div>
+      <div>
+        <Link to={AppPaths.CHECKOUT}>
+          <Button fullWidth variant="solid" color="primary">{d.goToCheckout}</Button>
+        </Link>
       </div>
     </div>
   );

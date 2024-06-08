@@ -6,4 +6,5 @@ export const AppPaths = {
   SHOP_SUBGROUP_NAME: ':subgroupName',
   SHOP_ITEM: 'item',
   CART: 'cart',
+  CHECKOUT: 'checkout',
 } as const;
