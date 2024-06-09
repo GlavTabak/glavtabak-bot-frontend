@@ -4,6 +4,7 @@ import { Button, Input, Select, SelectItem } from '@nextui-org/react';
 import { Controller, useForm, useWatch } from 'react-hook-form';
 import { pickupPointsData } from './model/pickup-points-data';
 import { CheckoutSchema, type CheckoutSchemaType } from './model/schema';
+import { sendDataFetcher } from './model/send-data-fetcher';
 
 export const CheckoutPage = () => {
   const d = useDictionary();
@@ -35,10 +36,8 @@ export const CheckoutPage = () => {
   });
 
   const submitHandler = (data: CheckoutSchemaType) => {
-    console.log(data);
+    sendDataFetcher(data);
   };
-
-  console.log(errors);
 
   return (
     <div>
@@ -63,7 +62,7 @@ export const CheckoutPage = () => {
               control={control}
             />
             <Controller
-              render={({ field: { onChange, ...field} }) => (
+              render={({ field: { onChange, ...field } }) => (
                 <Input
                   {...field}
                   onChange={(e) => {
@@ -126,7 +125,7 @@ export const CheckoutPage = () => {
                     color="primary"
                     label={d.selectPickupPoint}
                     onChange={field.onChange}
-                    selectedKeys={field.value}
+                    selectedKeys={[field.value]}
                     isRequired
                     isInvalid={!!errors[field.name]}
                     errorMessage={errors[field.name]?.message}
@@ -136,7 +135,7 @@ export const CheckoutPage = () => {
                         classNames={{
                           base: 'text-theme-button-color',
                         }}
-                        key={item.id}
+                        key={item.address}
                       >
                         {item.address}
                       </SelectItem>

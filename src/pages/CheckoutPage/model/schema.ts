@@ -4,7 +4,7 @@ export const CheckoutSchema = z.object({
   name: z.string().min(1, 'Поле обязательно для заполнения'),
   phone: z.string().min(1, 'Поле обязательно для заполнения'),
   delivery_type: z.string().min(1, 'Выберите вариант'),
-  address_pickup: z.string().optional(),
+  address_pickup: z.string().min(1, 'Выберите вариант'),
   address_city: z.string().optional(),
   address_street: z.string().optional(),
   address_house: z.string().optional(),
