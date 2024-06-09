@@ -10,7 +10,7 @@ import { ShopCartLinkIcon } from '@root/entities';
 
 export const Navbar = () => {
   return (
-    <NavbarBase className="rounded-xl bg-gray-100" as="nav">
+    <NavbarBase className="rounded-xl bg-theme-button-color" as="nav">
       <NavbarBrand>
         <Image
           alt="Glav Tabak Logo"

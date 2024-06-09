@@ -1,4 +1,4 @@
-import { nextui } from '@nextui-org/theme';
+import { nextui } from '@nextui-org/react';
 import type { Config } from 'tailwindcss';
 
 const config = {
@@ -19,19 +19,19 @@ const config = {
     },
     extend: {
       colors: {
-        "theme-accent-text-color": 'var(--tg-theme-accent-text-color)',
         "theme-bg-color": 'var(--tg-theme-bg-color)',
+        "theme-secondary-bg-color": 'var(--tg-theme-secondary-bg-color)',
+        "theme-text-color": 'var(--tg-theme-text-color)',
         "theme-button-color": 'var(--tg-theme-button-color)',
         "theme-button-text-color": 'var(--tg-theme-button-text-color)',
-        "theme-destructive-text-color": 'var(--tg-theme-destructive-text-color)',
+        "theme-accent-text-color": 'var(--tg-theme-accent-text-color)',
         "theme-header-bg-color": 'var(--tg-theme-header-bg-color)',
+        "theme-section-bg-color": 'var(--tg-theme-section-bg-color)',
         "theme-hint-color": 'var(--tg-theme-hint-color)',
         "theme-link-color": 'var(--tg-theme-link-color)',
-        "theme-secondary-bg-color": 'var(--tg-theme-secondary-bg-color)',
-        "theme-section-bg-color": 'var(--tg-theme-section-bg-color)',
         "theme-section-header-text-color": 'var(--tg-theme-section-header-text-color)',
+        "theme-destructive-text-color": 'var(--tg-theme-destructive-text-color)',
         "theme-subtitle-text-color": 'var(--tg-theme-subtitle-text-color)',
-        "theme-text-color": 'var(--tg-theme-text-color)',
       }
     },
   },
@@ -39,16 +39,7 @@ const config = {
     float: false,
   },
   darkMode: 'class',
-  plugins: [nextui({
-    themes: {
-      light : {
-        colors: {
-          background: 'var(--tg-theme-secondary-bg-color)',
-          foreground: 'var(--tg-theme-text-color)',
-        }
-      }
-    }
-  })],
+  plugins: [nextui()],
 } satisfies Config;
 
 export default config;

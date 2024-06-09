@@ -26,7 +26,7 @@ export const ShopItemCard: FC<ShopItemCardProps> = ({ itemData }) => {
   };
 
   return (
-    <Card shadow="sm" fullWidth className="h-full">
+    <Card shadow="sm" fullWidth className="h-full bg-theme-bg-color">
       {itemName && (
         <CardHeader className="justify-center text-center">
           <b>{itemName}</b>

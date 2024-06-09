@@ -8,7 +8,11 @@ import { CheckoutSchema, type CheckoutSchemaType } from './model/schema';
 export const CheckoutPage = () => {
   const d = useDictionary();
 
-  const { handleSubmit, control } = useForm<CheckoutSchemaType>({
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<CheckoutSchemaType>({
     defaultValues: {
       name: '',
       phone: '',
@@ -20,7 +24,7 @@ export const CheckoutPage = () => {
       address_doorbell_code: '',
       address_entrance: '',
       address_house: '',
-      address_street: ''
+      address_street: '',
     },
     resolver: zodResolver(CheckoutSchema),
   });
@@ -34,6 +38,8 @@ export const CheckoutPage = () => {
     console.log(data);
   };
 
+  console.log(errors);
+
   return (
     <div>
       <h1 className="mb-10">{d.checkoutPageTitle}</h1>
@@ -42,12 +48,36 @@ export const CheckoutPage = () => {
           <h3 className="text-xl">{d.aboutBuyerTitle}</h3>
           <div className="space-y-5">
             <Controller
-              render={({ field }) => <Input {...field} type="text" label={d.buyerNameInputLabel} isRequired />}
+              render={({ field }) => (
+                <Input
+                  {...field}
+                  type="text"
+                  color="primary"
+                  isInvalid={!!errors[field.name]}
+                  errorMessage={errors[field.name]?.message}
+                  label={d.buyerNameInputLabel}
+                  isRequired
+                />
+              )}
               name="name"
               control={control}
             />
             <Controller
-              render={({ field }) => <Input {...field} type="text" label={d.buyerPhoneInputLabel} isRequired />}
+              render={({ field: { onChange, ...field} }) => (
+                <Input
+                  {...field}
+                  onChange={(e) => {
+                    onChange(e.target.value.replace(/\D/g, ''));
+                  }}
+                  color="primary"
+                  type="text"
+                  startContent="+"
+                  isInvalid={!!errors[field.name]}
+                  errorMessage={errors[field.name]?.message}
+                  label={d.buyerPhoneInputLabel}
+                  isRequired
+                />
+              )}
               name="phone"
               control={control}
             />
@@ -58,9 +88,31 @@ export const CheckoutPage = () => {
           <div className="space-y-5">
             <Controller
               render={({ field }) => (
-                <Select label={d.deliveryType} onChange={field.onChange} selectedKeys={field.value} isRequired>
-                  <SelectItem key={d.deliveryTypeSelfPickup}>{d.deliveryTypeSelfPickup}</SelectItem>
-                  <SelectItem key={d.deliveryTypeCourier}>{d.deliveryTypeCourier}</SelectItem>
+                <Select
+                  color="primary"
+                  label={d.deliveryType}
+                  onChange={field.onChange}
+                  selectedKeys={[field.value]}
+                  isInvalid={!!errors[field.name]}
+                  errorMessage={errors[field.name]?.message}
+                  isRequired
+                >
+                  <SelectItem
+                    classNames={{
+                      base: 'text-theme-button-color',
+                    }}
+                    key={d.deliveryTypeSelfPickup}
+                  >
+                    {d.deliveryTypeSelfPickup}
+                  </SelectItem>
+                  <SelectItem
+                    classNames={{
+                      base: 'text-theme-button-color',
+                    }}
+                    key={d.deliveryTypeCourier}
+                  >
+                    {d.deliveryTypeCourier}
+                  </SelectItem>
                 </Select>
               )}
               name="delivery_type"
@@ -71,12 +123,24 @@ export const CheckoutPage = () => {
                 render={({ field }) => (
                   <Select
                     items={pickupPointsData}
+                    color="primary"
                     label={d.selectPickupPoint}
                     onChange={field.onChange}
                     selectedKeys={field.value}
                     isRequired
+                    isInvalid={!!errors[field.name]}
+                    errorMessage={errors[field.name]?.message}
                   >
-                    {(item) => <SelectItem key={item.id}>{item.address}</SelectItem>}
+                    {(item) => (
+                      <SelectItem
+                        classNames={{
+                          base: 'text-theme-button-color',
+                        }}
+                        key={item.id}
+                      >
+                        {item.address}
+                      </SelectItem>
+                    )}
                   </Select>
                 )}
                 name="address_pickup"
@@ -87,38 +151,40 @@ export const CheckoutPage = () => {
               <>
                 <div className="grid grid-cols-2 gap-2.5">
                   <Controller
-                    render={({ field }) => <Input {...field} type="text" label={d.address_city} />}
+                    render={({ field }) => <Input {...field} color="primary" type="text" label={d.address_city} />}
                     name="address_city"
                     control={control}
                   />
                   <Controller
-                    render={({ field }) => <Input {...field} type="text" label={d.address_street} />}
+                    render={({ field }) => <Input {...field} color="primary" type="text" label={d.address_street} />}
                     name="address_street"
                     control={control}
                   />
                   <Controller
-                    render={({ field }) => <Input {...field} type="text" label={d.address_house} />}
+                    render={({ field }) => <Input {...field} color="primary" type="text" label={d.address_house} />}
                     name="address_house"
                     control={control}
                   />
                   <Controller
-                    render={({ field }) => <Input {...field} type="text" label={d.address_entrance} />}
+                    render={({ field }) => <Input {...field} color="primary" type="text" label={d.address_entrance} />}
                     name="address_entrance"
                     control={control}
                   />
                   <Controller
-                    render={({ field }) => <Input {...field} type="text" label={d.address_apartment} />}
+                    render={({ field }) => <Input {...field} color="primary" type="text" label={d.address_apartment} />}
                     name="address_apartment"
                     control={control}
                   />
                   <Controller
-                    render={({ field }) => <Input {...field} type="text" label={d.address_doorbell_code} />}
+                    render={({ field }) => (
+                      <Input {...field} color="primary" type="text" label={d.address_doorbell_code} />
+                    )}
                     name="address_doorbell_code"
                     control={control}
                   />
                 </div>
                 <Controller
-                  render={({ field }) => <Input {...field} type="text" label={d.address_comment} />}
+                  render={({ field }) => <Input {...field} color="primary" type="text" label={d.address_comment} />}
                   name="address_comment"
                   control={control}
                 />
