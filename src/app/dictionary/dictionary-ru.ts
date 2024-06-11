@@ -13,8 +13,13 @@ export const dictionaryRu = {
   /** Заголовки колонок таблицы в корзине */
   itemName: 'Наименование',
   quantity: 'Количество',
-  price: 'Цена за ед.',
+  price: 'Цена ед.',
   totalPriceTable: 'Итог',
+  /** Модалка в корзине */
+  confirmDeletionDescription: 'Вы действительно хотите удалить этот товар из корзины?',
+  confirmDeletionTitle: 'Подтверждение удаления',
+  confirmDeletionButton: 'Удалить',
+  cancelDeletionButton: 'Отмена',
   /** Группы товаров */
   'iqosAccessories': 'Аксессуары для IQOS',
   'alkalineLiquids': 'Жидкость Щелочная',

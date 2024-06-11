@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useDictionary } from '@hooks';
 import { Button, Input, Select, SelectItem } from '@nextui-org/react';
+import { useCartStore } from '@root/entities';
 import { Controller, useForm, useWatch } from 'react-hook-form';
 import { pickupPointsData } from './model/pickup-points-data';
 import { CheckoutSchema, type CheckoutSchemaType } from './model/schema';
@@ -8,6 +9,7 @@ import { sendDataFetcher } from './model/send-data-fetcher';
 
 export const CheckoutPage = () => {
   const d = useDictionary();
+  const cart = useCartStore((state) => state.cart);
 
   const {
     handleSubmit,
@@ -36,7 +38,10 @@ export const CheckoutPage = () => {
   });
 
   const submitHandler = (data: CheckoutSchemaType) => {
-    sendDataFetcher(data);
+    sendDataFetcher({
+      cart: cart,
+      delivery_data: data,
+    });
   };
 
   return (

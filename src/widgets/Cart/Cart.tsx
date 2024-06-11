@@ -1,51 +1,80 @@
-import { Link } from '@components/service';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@components/ui';
 import { useDictionary } from '@hooks';
+import { Icon } from '@iconify/react';
 import { Button } from '@nextui-org/react';
+import { type ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
+import { useMemo } from 'react';
 import { AppPaths } from '@root/app/navigation';
 import { useCartStore, useTotalCartPrice } from '@root/entities';
-import { flexRender, getCoreRowModel, useReactTable, type ColumnDef } from '@tanstack/react-table';
-
-type CartItem = {
-  itemName: string;
-  quantity: number;
-  price: number;
-  totalPrice: number;
-}
+import { Link } from '@components/service';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@components/ui';
+import type { CartItem } from './model/types';
+import { DeleteProductButton } from './ui';
 
 export const Cart = () => {
   const d = useDictionary();
-  const cart = useCartStore((state) => state.cart);
-  const resetCart = useCartStore((state) => state.resetCart);
+  const { cart, addToCart, subtractFromCart, resetCart } = useCartStore((state) => state);
   const totalPrice = useTotalCartPrice();
-  const transformedCart: CartItem[] = Object.entries(cart)
-    .map(([key, { price, quantity, totalPrice }]) => (
-      {
-        itemName: key,
-        price,
-        quantity,
-        totalPrice
-      }
-    ));
+  
+  const cartEntries = Object.entries(cart);
+  const transformedCart: CartItem[] = cartEntries.map(([key, { price, quantity, totalPrice }]) => ({
+    itemName: key,
+    price,
+    quantity,
+    totalPrice,
+  }));
 
-  const cartColumns: ColumnDef<CartItem>[] = [
-    {
-      accessorKey: 'itemName',
-      header: d.itemName,
-    },
-    {
-      accessorKey: 'quantity',
-      header: d.quantity,
-    },
-    {
-      accessorKey: 'price',
-      header: d.price,
-    },
-    {
-      accessorKey: 'totalPrice',
-      header: d.totalPriceTable,
-    },
-  ];
+  const cartColumns: ColumnDef<CartItem>[] = useMemo(
+    () => [
+      {
+        accessorKey: 'itemName',
+        header: d.itemName,
+      },
+      {
+        accessorKey: 'quantity',
+        header: d.quantity,
+        cell: ({ getValue, row }) => (
+          <div className="flex items-center gap-x-1">
+            <Button
+              isIconOnly
+              variant="light"
+              color="danger"
+              aria-label="Remove from cart"
+              onPress={() => {
+                subtractFromCart({ id: row.original.itemName, price: row.original.price });
+              }}
+            >
+              <Icon icon="heroicons:minus-circle" className="size-5" />
+            </Button>
+            <span>{getValue<number>()}</span>
+            <Button
+              isIconOnly
+              variant="light"
+              color="success"
+              aria-label="Add to cart"
+              onPress={() => {
+                addToCart({ id: row.original.itemName, price: row.original.price });
+              }}
+            >
+              <Icon icon="heroicons:plus-circle" className="size-5" />
+            </Button>
+          </div>
+        ),
+      },
+      {
+        accessorKey: 'price',
+        header: d.price,
+      },
+      {
+        accessorKey: 'totalPrice',
+        header: d.totalPriceTable,
+      },
+      {
+        id: 'actions',
+        cell: ({ row }) => <DeleteProductButton row={row} />,
+      },
+    ],
+    [d, addToCart, subtractFromCart, cartEntries.length],
+  );
 
   const table = useReactTable({
     data: transformedCart,
@@ -87,12 +116,18 @@ export const Cart = () => {
         </TableBody>
       </Table>
       <div className="flex items-center justify-between">
-        <Button variant="ghost" color="warning" onPress={clearCartHandler}>{d.clearCart}</Button>
-        <div className="font-semibold text-lg">{d.totalPrice}: {totalPrice}</div>
+        <Button variant="ghost" color="warning" onPress={clearCartHandler}>
+          {d.clearCart}
+        </Button>
+        <div className="text-lg font-semibold">
+          {d.totalPrice}: {totalPrice}
+        </div>
       </div>
       <div>
         <Link to={AppPaths.CHECKOUT}>
-          <Button fullWidth variant="solid" color="primary">{d.goToCheckout}</Button>
+          <Button fullWidth variant="solid" color="primary">
+            {d.goToCheckout}
+          </Button>
         </Link>
       </div>
     </div>

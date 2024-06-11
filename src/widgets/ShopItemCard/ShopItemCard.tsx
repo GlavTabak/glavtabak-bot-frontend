@@ -14,11 +14,11 @@ interface ShopItemCardProps {
 
 export const ShopItemCard: FC<ShopItemCardProps> = ({ itemData }) => {
   const { itemName, itemImg, price } = itemData;
-  const { cart, addToCart, removeFromCart } = useCartStore((state) => state);
+  const { cart, addToCart, subtractFromCart } = useCartStore((state) => state);
   const currentItemCount = cart[itemName || '']?.quantity || 0;
 
   const removeItemHandler = () => {
-    removeFromCart({ id: itemName, price: price })
+    subtractFromCart({ id: itemName, price: price })
   };
 
   const addItemHandler = () => {

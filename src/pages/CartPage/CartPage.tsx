@@ -1,4 +1,4 @@
-import { Cart } from '@root/widgets/Cart/Cart';
+import { Cart } from '@root/widgets';
 
 export const CartPage = () => {
   return <Cart />;

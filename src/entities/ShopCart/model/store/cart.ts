@@ -7,7 +7,8 @@ interface CartState {
 
 interface CartActions {
   addToCart: ({ id, price }: { id: string, price: number }) => void;
-  removeFromCart: ({ id, price }: { id: string, price: number }) => void;
+  subtractFromCart: ({ id, price }: { id: string, price: number }) => void;
+  removeFromCart: (id: string) => void;
   resetCart: () => void;
 }
 
@@ -31,7 +32,7 @@ const useCartStore = create<CartState & CartActions>()((set) => (
           },
         }
       )),
-    removeFromCart: ({ id, price }) =>
+    subtractFromCart: ({ id, price }) =>
       set((state) => {
         // Нужна проверка, чтобы счетчик товара не уходил в минус
         if ((
@@ -57,6 +58,12 @@ const useCartStore = create<CartState & CartActions>()((set) => (
           }
         );
       }),
+    removeFromCart: (id) => set((state) => {
+      const cart = structuredClone(state.cart);
+      delete cart[id];
+      
+      return { cart: cart };
+    }),
     resetCart: () => set({ cart: {} }),
   }
 ));
