@@ -12,69 +12,75 @@ import { DeleteProductButton } from './ui';
 
 export const Cart = () => {
   const d = useDictionary();
-  const { cart, addToCart, subtractFromCart, resetCart } = useCartStore((state) => state);
+  const cart = useCartStore((state) => state.cart);
+  const addToCart = useCartStore((state) => state.addToCart);
+  const subtractFromCart = useCartStore((state) => state.subtractFromCart);
+  const resetCart = useCartStore((state) => state.resetCart);
   const totalPrice = useTotalCartPrice();
-  
-  const cartEntries = Object.entries(cart);
-  const transformedCart: CartItem[] = cartEntries.map(([key, { price, quantity, totalPrice }]) => ({
-    itemName: key,
-    price,
-    quantity,
-    totalPrice,
-  }));
 
-  const cartColumns: ColumnDef<CartItem>[] = useMemo(
-    () => [
-      {
-        accessorKey: 'itemName',
-        header: d.itemName,
-      },
-      {
-        accessorKey: 'quantity',
-        header: d.quantity,
-        cell: ({ getValue, row }) => (
-          <div className="flex items-center gap-x-1">
-            <Button
-              isIconOnly
-              variant="light"
-              color="danger"
-              aria-label="Remove from cart"
-              onPress={() => {
-                subtractFromCart({ id: row.original.itemName, price: row.original.price });
-              }}
-            >
-              <Icon icon="heroicons:minus-circle" className="size-5" />
-            </Button>
-            <span>{getValue<number>()}</span>
-            <Button
-              isIconOnly
-              variant="light"
-              color="success"
-              aria-label="Add to cart"
-              onPress={() => {
-                addToCart({ id: row.original.itemName, price: row.original.price });
-              }}
-            >
-              <Icon icon="heroicons:plus-circle" className="size-5" />
-            </Button>
-          </div>
-        ),
-      },
-      {
-        accessorKey: 'price',
-        header: d.price,
-      },
-      {
-        accessorKey: 'totalPrice',
-        header: d.totalPriceTable,
-      },
-      {
-        id: 'actions',
-        cell: ({ row }) => <DeleteProductButton row={row} />,
-      },
-    ],
-    [d, addToCart, subtractFromCart, cartEntries.length],
+  const transformedCart: CartItem[] = useMemo(
+    () =>
+      Object.entries(cart).map(([key, { price, quantity, totalPrice }]) => ({
+        itemName: key,
+        price,
+        quantity,
+        totalPrice,
+      })),
+    [cart],
   );
+
+  const cartColumns: ColumnDef<CartItem>[] = [
+    {
+      accessorKey: 'itemName',
+      header: d.itemName,
+    },
+    {
+      accessorKey: 'quantity',
+      header: d.quantity,
+      cell: ({ getValue, row }) => (
+        <div className="flex items-center gap-x-1">
+          <Button
+            isIconOnly
+            variant="light"
+            color="danger"
+            aria-label="Remove from cart"
+            onPress={() => {
+              /* Нужна проверка, чтобы счетчик товара не был меньше 1, так как меньше 1 означает, 
+              что товар нужно полностью удалить, а для этого у нас отдельная кнопка */
+              if (getValue<number>() - 1 === 0) return;
+              subtractFromCart({ id: row.original.itemName, price: row.original.price });
+            }}
+          >
+            <Icon icon="heroicons:minus-circle" className="size-5" />
+          </Button>
+          <span>{getValue<number>()}</span>
+          <Button
+            isIconOnly
+            variant="light"
+            color="success"
+            aria-label="Add to cart"
+            onPress={() => {
+              addToCart({ id: row.original.itemName, price: row.original.price });
+            }}
+          >
+            <Icon icon="heroicons:plus-circle" className="size-5" />
+          </Button>
+        </div>
+      ),
+    },
+    /* {
+      accessorKey: 'price',
+      header: d.price,
+    }, */
+    {
+      accessorKey: 'totalPrice',
+      header: d.totalPriceTable,
+    },
+    {
+      id: 'actions',
+      cell: ({ row }) => <DeleteProductButton row={row} />,
+    },
+  ];
 
   const table = useReactTable({
     data: transformedCart,
@@ -125,7 +131,7 @@ export const Cart = () => {
       </div>
       <div>
         <Link to={AppPaths.CHECKOUT}>
-          <Button fullWidth variant="solid" color="primary">
+          <Button fullWidth variant="solid" color="primary" size="lg">
             {d.goToCheckout}
           </Button>
         </Link>
