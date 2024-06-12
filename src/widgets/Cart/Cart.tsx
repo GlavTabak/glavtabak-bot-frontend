@@ -5,6 +5,7 @@ import { type ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tan
 import { useMemo } from 'react';
 import { AppPaths } from '@root/app/navigation';
 import { useCartStore, useTotalCartPrice } from '@root/entities';
+import { EmptyCart, useTotalQuantity } from '@root/entities/ShopCart';
 import { Link } from '@components/service';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@components/ui';
 import type { CartItem } from './model/types';
@@ -12,6 +13,7 @@ import { DeleteProductButton } from './ui';
 
 export const Cart = () => {
   const d = useDictionary();
+  const totalQuantity = useTotalQuantity();
   const cart = useCartStore((state) => state.cart);
   const addToCart = useCartStore((state) => state.addToCart);
   const subtractFromCart = useCartStore((state) => state.subtractFromCart);
@@ -92,44 +94,46 @@ export const Cart = () => {
     resetCart();
   };
 
-  if (Object.keys(cart).length === 0) {
-    return <h1 className="text-center">{d.cartIsEmpty}</h1>;
+  if (totalQuantity === 0) {
+    return <EmptyCart />;
   }
 
   return (
-    <div className="space-y-5">
-      <h1>{d.cart}</h1>
-      <Table>
-        <TableHeader>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <TableHead key={header.id}>
-                  {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
-                </TableHead>
-              ))}
-            </TableRow>
-          ))}
-        </TableHeader>
-        <TableBody>
-          {table.getRowModel().rows.map((row) => (
-            <TableRow key={row.id}>
-              {row.getAllCells().map((cell) => (
-                <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
-              ))}
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-      <div className="flex items-center justify-between">
-        <Button variant="ghost" color="warning" onPress={clearCartHandler}>
-          {d.clearCart}
-        </Button>
-        <div className="text-lg font-semibold">
-          {d.totalPrice}: {totalPrice}
+    <div className="grid">
+      <div className="space-y-5">
+        <h1>{d.cart}</h1>
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <TableHead key={header.id}>
+                    {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+                  </TableHead>
+                ))}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows.map((row) => (
+              <TableRow key={row.id}>
+                {row.getAllCells().map((cell) => (
+                  <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+        <div className="flex items-center justify-between">
+          <Button variant="ghost" color="warning" onPress={clearCartHandler}>
+            {d.clearCart}
+          </Button>
+          <div className="text-lg font-semibold">
+            {d.totalPrice}: {totalPrice}
+          </div>
         </div>
       </div>
-      <div>
+      <div className="self-end">
         <Link to={AppPaths.CHECKOUT}>
           <Button fullWidth variant="solid" color="primary" size="lg">
             {d.goToCheckout}

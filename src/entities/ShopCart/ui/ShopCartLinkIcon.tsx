@@ -1,7 +1,7 @@
-import { Link } from '@components/service';
 import { Icon } from '@iconify/react';
 import { Badge } from '@nextui-org/react';
 import { AppPaths } from '@root/app/navigation';
+import { Link } from '@components/service';
 import { useTotalQuantity } from '../';
 
 export const ShopCartLinkIcon = () => {

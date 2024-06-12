@@ -1,6 +1,3 @@
-import { AppLayout } from '@root/app/layout/AppLayout';
-import { AppPaths } from '@root/app/navigation';
-import { CartPage, CheckoutPage, IndexPage, ShopGroupPage, ShopSubgroupPage } from '@root/pages';
 import { useIntegration } from '@tma.js/react-router-integration';
 import {
   bindMiniAppCSSVars,
@@ -12,12 +9,10 @@ import {
   useViewport,
 } from '@tma.js/sdk-react';
 import { type FC, useEffect, useMemo } from 'react';
-import {
-  Navigate,
-  Route,
-  Router,
-  Routes,
-} from 'react-router-dom';
+import { Navigate, Route, Router, Routes } from 'react-router-dom';
+import { AppLayout } from '@root/app/layout/AppLayout';
+import { AppPaths } from '@root/app/navigation';
+import { CartPage, CheckoutPage, IndexPage, ShopGroupPage, ShopSubgroupPage } from '@root/pages';
 
 export const App: FC = () => {
   const miniApp = useMiniApp();

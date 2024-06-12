@@ -21,12 +21,12 @@ export const dictionaryRu = {
   confirmDeletionButton: 'Удалить',
   cancelDeletionButton: 'Отмена',
   /** Группы товаров */
-  'iqosAccessories': 'Аксессуары для IQOS',
-  'alkalineLiquids': 'Жидкость Щелочная',
-  'saltLiquids': 'Жидкость солевая',
-  'eCigarette': 'Электронная сигарета',
-  'devices': 'Устройство',
-  'chewingTobacco': 'Жевательный табак',
+  iqosAccessories: 'Аксессуары для IQOS',
+  alkalineLiquids: 'Жидкость Щелочная',
+  saltLiquids: 'Жидкость солевая',
+  eCigarette: 'Электронная сигарета',
+  devices: 'Устройство',
+  chewingTobacco: 'Жевательный табак',
   /** Страница оформления заказа */
   aboutBuyerTitle: 'Информация о покупателе',
   buyerNameInputLabel: 'Имя',
@@ -46,4 +46,6 @@ export const dictionaryRu = {
   address_apartment: 'Квартира',
   address_doorbell_code: 'Код домофона',
   address_comment: 'Дополнительная информация',
-}
+  checkoutPageSuccessMessage: 'Ваш заказ принят. Спасибо!',
+  checkoutPageBackToMainPage: 'Вернуться на главную страницу',
+};

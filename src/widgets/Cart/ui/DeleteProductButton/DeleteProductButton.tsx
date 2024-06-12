@@ -1,13 +1,13 @@
 import { useDictionary } from '@hooks';
 import { Icon } from '@iconify/react';
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from '@nextui-org/react';
-import { useCartStore } from '@root/entities';
-import type { FC } from 'react';
-import type { CartItem } from '../../model/types';
 import type { Row } from '@tanstack/react-table';
+import type { FC } from 'react';
+import { useCartStore } from '@root/entities';
+import type { CartItem } from '../../model/types';
 
 interface DeleteProductButtonProps {
-  row: Row<CartItem>
+  row: Row<CartItem>;
 }
 
 export const DeleteProductButton: FC<DeleteProductButtonProps> = ({ row }) => {
@@ -20,9 +20,15 @@ export const DeleteProductButton: FC<DeleteProductButtonProps> = ({ row }) => {
       <Button isIconOnly variant="light" onPress={onOpen}>
         <Icon icon="heroicons-outline:trash" className="size-5 text-theme-text-color" />
       </Button>
-      <Modal size="xs" placement="center" isOpen={isOpen} onOpenChange={onOpenChange} classNames={{
-        base: 'bg-theme-bg-color',
-      }}>
+      <Modal
+        size="xs"
+        placement="center"
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        classNames={{
+          base: 'bg-theme-bg-color',
+        }}
+      >
         <ModalContent>
           {(onClose) => (
             <>

@@ -1,11 +1,10 @@
-import ReactDOM from 'react-dom/client';
-import { App } from './App';
-import { ErrorBoundary, ErrorBoundaryError } from '@components/service';
 import { NextUIProvider } from '@nextui-org/react';
 import { SDKProvider, useLaunchParams } from '@tma.js/sdk-react';
 import { type FC, useEffect } from 'react';
-
+import ReactDOM from 'react-dom/client';
 import '@root/app/styles/globals.css';
+import { ErrorBoundary, ErrorBoundaryError } from '@components/service';
+import { App } from './App';
 
 const Root: FC = () => {
   const debug = useLaunchParams().startParam === 'debug';

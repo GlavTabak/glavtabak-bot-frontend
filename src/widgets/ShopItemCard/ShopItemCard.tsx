@@ -18,11 +18,11 @@ export const ShopItemCard: FC<ShopItemCardProps> = ({ itemData }) => {
   const currentItemCount = cart[itemName || '']?.quantity || 0;
 
   const removeItemHandler = () => {
-    subtractFromCart({ id: itemName, price: price })
+    subtractFromCart({ id: itemName, price: price });
   };
 
   const addItemHandler = () => {
-    addToCart({ id: itemName, price: price })
+    addToCart({ id: itemName, price: price });
   };
 
   return (
@@ -47,19 +47,11 @@ export const ShopItemCard: FC<ShopItemCardProps> = ({ itemData }) => {
       <CardFooter className="grid justify-items-center gap-y-2.5 text-small">
         {price && <b className="text-lg">{`${price} ₽`}</b>}
         <div className="flex items-center gap-5">
-          <Button
-            isIconOnly variant="light" color="danger" aria-label="Remove from cart" onPress={removeItemHandler}
-          >
+          <Button isIconOnly variant="light" color="danger" aria-label="Remove from cart" onPress={removeItemHandler}>
             <Icon icon="heroicons:minus-circle" className="size-8" />
           </Button>
-          <div className="select-none font-bold text-lg">{currentItemCount}</div>
-          <Button
-            isIconOnly
-            variant="light"
-            color="success"
-            aria-label="Add to cart"
-            onPress={addItemHandler}
-          >
+          <div className="select-none text-lg font-bold">{currentItemCount}</div>
+          <Button isIconOnly variant="light" color="success" aria-label="Add to cart" onPress={addItemHandler}>
             <Icon icon="heroicons:plus-circle" className="size-8" />
           </Button>
         </div>

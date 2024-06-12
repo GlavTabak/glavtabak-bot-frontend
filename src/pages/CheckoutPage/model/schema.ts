@@ -12,6 +12,6 @@ export const CheckoutSchema = z.object({
   address_apartment: z.string().optional(),
   address_doorbell_code: z.string().optional(),
   address_comment: z.string().optional(),
-})
+});
 
-export type CheckoutSchemaType = z.infer<typeof CheckoutSchema>
+export type CheckoutSchemaType = z.infer<typeof CheckoutSchema>;

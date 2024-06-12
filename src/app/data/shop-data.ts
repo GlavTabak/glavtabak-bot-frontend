@@ -1,11 +1,11 @@
-import { IQOSAccessories } from '@root/app/data/iqos-accessories';
-import { dictionaryRu } from '@root/app/dictionary';
-import iqosAccessoriesImg from '@root/app/assets/img/iqos.jpg';
 import alkalineLiquidImg from '@root/app/assets/img/alkaline.jpg';
 import chewingTobaccoImg from '@root/app/assets/img/chewing-tobacco.jpg';
 import devicesImg from '@root/app/assets/img/devices.jpeg';
 import eCigaretteImg from '@root/app/assets/img/e-cigarette.jpg';
+import iqosAccessoriesImg from '@root/app/assets/img/iqos.jpg';
 import saltLiquidImg from '@root/app/assets/img/salt.jpg';
+import { IQOSAccessories } from '@root/app/data/iqos-accessories';
+import { dictionaryRu } from '@root/app/dictionary';
 
 // TODO: здесь будут реальные данные вместо скопированных одних и тех же
 export const shopData = [
@@ -45,4 +45,4 @@ export const shopData = [
     groupImg: devicesImg,
     groupData: IQOSAccessories,
   },
-]
+];

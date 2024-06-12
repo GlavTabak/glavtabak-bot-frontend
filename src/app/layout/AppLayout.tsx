@@ -1,5 +1,5 @@
-import { Navbar } from '@root/widgets/Navbar/Navbar';
 import type { ReactNode } from 'react';
+import { Navbar } from '@root/widgets/Navbar/Navbar';
 import { ContainerFluid } from '@components/layouts';
 
 /** Файл глобальной разметки страницы, тут выделяется место под headers, footers и тд */

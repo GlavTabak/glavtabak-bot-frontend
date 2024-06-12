@@ -1,9 +1,9 @@
-import { Link } from '@components/service';
-import { Card } from '@components/ui';
 import { useShopData } from '@hooks';
+import { useLocation, useParams } from 'react-router-dom';
 import { dictionaryRu } from '@root/app/dictionary';
 import { AppPaths } from '@root/app/navigation';
-import { useLocation, useParams } from 'react-router-dom';
+import { Link } from '@components/service';
+import { Card } from '@components/ui';
 
 export const ShopGroupPage = () => {
   const { groupName } = useParams();

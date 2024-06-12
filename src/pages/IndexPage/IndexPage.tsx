@@ -1,9 +1,9 @@
-import { Link } from '@components/service';
-import { Card } from '@components/ui';
+import type { FC } from 'react';
 import { dictionaryRu } from '@root/app/dictionary';
 import { AppPaths } from '@root/app/navigation';
 import { useShopData } from '@root/shared/lib/hooks';
-import type { FC } from 'react';
+import { Link } from '@components/service';
+import { Card } from '@components/ui';
 
 export const IndexPage: FC = () => {
   const shopData = useShopData();
@@ -15,15 +15,12 @@ export const IndexPage: FC = () => {
         {shopData.map((shopItem) => (
           <li key={shopItem.id}>
             <Link to={`${AppPaths.SHOP}/${shopItem.groupName}`}>
-              <Card
-                cardText={shopItem.groupName}
-                cardImg={shopItem.groupImg}
-              />
+              <Card cardText={shopItem.groupName} cardImg={shopItem.groupImg} />
             </Link>
           </li>
         ))}
         {/* Палетка цветов телеграма для тестирования */}
-{/*     <li className="w-full h-20 bg-background">1</li>
+        {/*     <li className="w-full h-20 bg-background">1</li>
         <li className="w-full h-20 bg-foreground">2</li>
         <li className="w-full h-20 bg-theme-bg-color">13</li>
         <li className="w-full h-20 bg-theme-secondary-bg-color">10</li>

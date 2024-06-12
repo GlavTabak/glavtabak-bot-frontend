@@ -23,4 +23,4 @@ export const pickupPointsData = [
     id: '6',
     address: 'ДЕПО Три вокзала. Новорязанская ул.23, стр. 1, этаж 1',
   },
-]
+];

@@ -6,12 +6,7 @@ interface TableProps extends HTMLAttributes<HTMLTableElement> {
 }
 
 const Table = forwardRef<HTMLTableElement, TableProps>(({ className, containerClassName, ...props }, ref) => (
-  <div
-    className={cn(
-      'relative w-full overflow-auto',
-      containerClassName,
-    )}
-  >
+  <div className={cn('relative w-full overflow-auto', containerClassName)}>
     <table ref={ref} className={cn('w-full caption-bottom', className)} {...props} />
   </div>
 ));
@@ -24,14 +19,7 @@ TableHeader.displayName = 'TableHeader';
 
 const TableHead = forwardRef<HTMLTableCellElement, ThHTMLAttributes<HTMLTableCellElement>>(
   ({ className, ...props }, ref) => (
-    <th
-      ref={ref}
-      className={cn(
-        'p-3.5 text-left align-middle desktop:p-5',
-        className,
-      )}
-      {...props}
-    />
+    <th ref={ref} className={cn('p-3.5 text-left align-middle desktop:p-5', className)} {...props} />
   ),
 );
 TableHead.displayName = 'TableHead';
@@ -43,43 +31,25 @@ TableBody.displayName = 'TableBody';
 
 const TableRow = forwardRef<HTMLTableRowElement, HTMLAttributes<HTMLTableRowElement>>(
   ({ className, ...props }, ref) => (
-    <tr
-      ref={ref}
-      className={cn(
-        'border-b border-theme-text-color last:border-0',
-        className,
-      )}
-      {...props}
-    />
+    <tr ref={ref} className={cn('border-b border-theme-text-color last:border-0', className)} {...props} />
   ),
 );
 TableRow.displayName = 'TableRow';
 
 const TableCell = forwardRef<HTMLTableCellElement, TdHTMLAttributes<HTMLTableCellElement>>(
   ({ className, ...props }, ref) => (
-    <td
-      ref={ref}
-      className={cn(
-        'px-3.5 py-2.5 align-middle desktop:px-5',
-        className,
-      )}
-      {...props}
-    />
+    <td ref={ref} className={cn('px-3.5 py-2.5 align-middle desktop:px-5', className)} {...props} />
   ),
 );
 TableCell.displayName = 'TableCell';
 
 const TableFooter = forwardRef<HTMLTableSectionElement, HTMLAttributes<HTMLTableSectionElement>>(
-  ({ className, ...props }, ref) => (
-    <tfoot ref={ref} className={cn('font-medium', className)} {...props} />
-  ),
+  ({ className, ...props }, ref) => <tfoot ref={ref} className={cn('font-medium', className)} {...props} />,
 );
 TableFooter.displayName = 'TableFooter';
 
 const TableCaption = forwardRef<HTMLTableCaptionElement, HTMLAttributes<HTMLTableCaptionElement>>(
-  ({ className, ...props }, ref) => (
-    <caption ref={ref} className={cn('mt-4 text-sm', className)} {...props} />
-  ),
+  ({ className, ...props }, ref) => <caption ref={ref} className={cn('mt-4 text-sm', className)} {...props} />,
 );
 TableCaption.displayName = 'TableCaption';
 
