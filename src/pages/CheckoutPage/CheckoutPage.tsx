@@ -15,13 +15,15 @@ const defaultValues = {
   phone: '',
   delivery_type: '',
   address_pickup: '',
-  address_apartment: '',
   address_city: '',
-  address_comment: '',
-  address_doorbell_code: '',
-  address_entrance: '',
-  address_house: '',
   address_street: '',
+  address_house: '',
+  address_block: '',
+  address_entrance: '',
+  address_doorbell_code: '',
+  address_floor: '',
+  address_apartment: '',
+  address_comment: '',
 };
 
 export const CheckoutPage = () => {
@@ -67,8 +69,9 @@ export const CheckoutPage = () => {
     <div>
       <h1 className="mb-10 text-center">{d.checkoutPageTitle}</h1>
       {isSubmitSuccessful ? (
-        <div>
-          <h2 className="mb-10 text-center">{d.checkoutPageSuccessMessage}</h2>
+        <div className="space-y-10">
+          <h2 className="text-center">{d.checkoutPageSuccessMessage}</h2>
+          <h3 className="text-center text-xl font-semibold">{d.checkoutPageManagerWillContactYou}</h3>
           <Button fullWidth variant="solid" color="primary" size="lg" onPress={endBuyingSessionHandler}>
             {d.checkoutPageBackToMainPage}
           </Button>
@@ -197,6 +200,11 @@ export const CheckoutPage = () => {
                       control={control}
                     />
                     <Controller
+                      render={({ field }) => <Input {...field} color="primary" type="text" label={d.address_block} />}
+                      name="address_block"
+                      control={control}
+                    />
+                    <Controller
                       render={({ field }) => (
                         <Input {...field} color="primary" type="text" label={d.address_entrance} />
                       )}
@@ -205,16 +213,23 @@ export const CheckoutPage = () => {
                     />
                     <Controller
                       render={({ field }) => (
-                        <Input {...field} color="primary" type="text" label={d.address_apartment} />
+                        <Input {...field} color="primary" type="text" label={d.address_doorbell_code} />
                       )}
-                      name="address_apartment"
+                      name="address_doorbell_code"
                       control={control}
                     />
                     <Controller
                       render={({ field }) => (
-                        <Input {...field} color="primary" type="text" label={d.address_doorbell_code} />
+                        <Input {...field} color="primary" type="text" label={d.address_floor} />
                       )}
-                      name="address_doorbell_code"
+                      name="address_floor"
+                      control={control}
+                    />
+                    <Controller
+                      render={({ field }) => (
+                        <Input {...field} color="primary" type="text" label={d.address_apartment} />
+                      )}
+                      name="address_apartment"
                       control={control}
                     />
                   </div>

@@ -3,7 +3,7 @@ import {
   bindMiniAppCSSVars,
   bindThemeParamsCSSVars,
   bindViewportCSSVars,
-  initNavigator,
+  initNavigator, useClosingBehavior,
   useMiniApp,
   useThemeParams,
   useViewport,
@@ -18,6 +18,7 @@ export const App: FC = () => {
   const miniApp = useMiniApp();
   const themeParams = useThemeParams();
   const viewport = useViewport();
+  const closingBehaviour = useClosingBehavior();
 
   useEffect(() => {
     return bindMiniAppCSSVars(miniApp, themeParams);
@@ -30,6 +31,14 @@ export const App: FC = () => {
   useEffect(() => {
     return viewport && bindViewportCSSVars(viewport);
   }, [viewport]);
+
+  useEffect(() => {
+    closingBehaviour.enableConfirmation();
+    
+    return () => {
+      closingBehaviour.disableConfirmation();
+    }
+  }, []);
 
   // Create new application navigator and attach it to the browser history, so it could modify
   // it and listen to its changes.
