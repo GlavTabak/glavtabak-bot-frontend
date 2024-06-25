@@ -49,10 +49,11 @@ export const CheckoutPage = () => {
   });
 
   const submitHandler = (data: CheckoutSchemaType) => {
-    sendDataFetcher({
-      cart: cart,
-      delivery_data: data,
-    });
+    console.log(data);
+    // sendDataFetcher({
+    //   cart: cart,
+    //   delivery_data: data,
+    // });
     resetCart();
   };
 

@@ -1,12 +1,13 @@
 {
   "name": "glav_tabak_web_app",
   "private": true,
-  "version": "0.0.2",
+  "version": "1.0.0",
   "type": "module",
+  "homepage": "https://GlavTabak.github.io/glavtabak-bot-frontend",
   "scripts": {
     "deploy": "gh-pages -d dist",
-    "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "dev": "vite --config vite.config.dev.ts",
+    "build": "tsc --noEmit && vite build --config vite.config.prod.ts",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
     "lint:inspect-config": "pnpm dlx @eslint/config-inspector@latest",
