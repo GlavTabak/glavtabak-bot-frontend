@@ -99,7 +99,7 @@ export const Cart = () => {
   }
 
   return (
-    <div className="grid">
+    <div className="grid gap-8">
       <div className="space-y-5">
         <h1>{d.cart}</h1>
         <Table>
@@ -124,11 +124,11 @@ export const Cart = () => {
             ))}
           </TableBody>
         </Table>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center gap-x-2.5 justify-between">
           <Button variant="ghost" color="warning" onPress={clearCartHandler}>
             {d.clearCart}
           </Button>
-          <div className="text-lg font-semibold">
+          <div className="text-lg font-semibold text-center">
             {d.totalPrice}: {totalPrice}
           </div>
         </div>

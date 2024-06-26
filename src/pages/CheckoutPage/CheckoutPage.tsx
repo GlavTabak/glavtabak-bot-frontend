@@ -13,7 +13,6 @@ import { CheckoutSchema, type CheckoutSchemaType } from './model/schema';
 const defaultValues = {
   name: '',
   phone: '',
-  address_pickup: '',
   address_city: '',
   address_street: '',
   address_house: '',
