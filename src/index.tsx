@@ -5,6 +5,9 @@ import ReactDOM from 'react-dom/client';
 import '@root/app/styles/globals.css';
 import { ErrorBoundary, ErrorBoundaryError } from '@components/service';
 import { App } from './App';
+// Uncomment this import in case you would like to develop the application even outside
+// the Telegram application, just in your browser.
+// import './mockEnv.ts';
 
 const Root: FC = () => {
   const debug = useLaunchParams().startParam === 'debug';

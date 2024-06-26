@@ -8,10 +8,10 @@ const config = {
   ],
   theme: {
     screens: {
+      mobileSm: '320px',
       mobile: '375px',
-      tablet: '600px',
-      desktop: '1024px',
-      desktopXl: '1400px',
+      tablet: '450px',
+      desktop: '1000px',
     },
     container: {
       center: true,

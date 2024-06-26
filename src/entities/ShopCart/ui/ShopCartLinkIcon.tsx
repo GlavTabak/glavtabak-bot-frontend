@@ -8,7 +8,7 @@ export const ShopCartLinkIcon = () => {
   const totalQuantity = useTotalQuantity();
 
   return (
-    <Link to={AppPaths.CART}>
+    <Link className="contents" to={AppPaths.CART}>
       <Badge color="danger" content={totalQuantity} shape="circle">
         <Icon icon="heroicons:shopping-cart" className="size-8" color="black" />
       </Badge>

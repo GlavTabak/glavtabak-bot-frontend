@@ -9,7 +9,9 @@ interface CardProps {
 
 export const Card: FC<CardProps> = ({ cardText, cardImg, cardTitle }) => {
   return (
-    <CardBase shadow="sm" fullWidth isPressable>
+    <CardBase shadow="sm" fullWidth isPressable classNames={{
+      base: 'h-full',
+    }}>
       {cardTitle && (
         <CardHeader>
           <b>{cardTitle}</b>
@@ -27,7 +29,7 @@ export const Card: FC<CardProps> = ({ cardText, cardImg, cardTitle }) => {
           />
         )}
       </CardBody>
-      <CardFooter className="items-center justify-center text-small">
+      <CardFooter className="items-center h-full justify-center text-small">
         <b>{cardText}</b>
       </CardFooter>
     </CardBase>

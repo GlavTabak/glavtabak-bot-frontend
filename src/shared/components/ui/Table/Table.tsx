@@ -1,15 +1,53 @@
 import { cn } from '@utils';
-import { type HTMLAttributes, type TdHTMLAttributes, type ThHTMLAttributes, forwardRef } from 'react';
+import {
+  type HTMLAttributes,
+  type TdHTMLAttributes,
+  type ThHTMLAttributes,
+  forwardRef,
+  useRef,
+  useEffect
+} from 'react';
 
 interface TableProps extends HTMLAttributes<HTMLTableElement> {
   containerClassName?: string;
 }
 
-const Table = forwardRef<HTMLTableElement, TableProps>(({ className, containerClassName, ...props }, ref) => (
-  <div className={cn('relative w-full overflow-auto', containerClassName)}>
-    <table ref={ref} className={cn('w-full caption-bottom', className)} {...props} />
-  </div>
-));
+const Table = forwardRef<HTMLTableElement, TableProps>(({ className, containerClassName, ...props }, ref) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    function calculateTotalPaddingsAndBorders(element: HTMLElement) {
+      let total = 0;
+      while (element && element.parentElement) {
+        const style = window.getComputedStyle(element.parentElement);
+        total +=
+          parseFloat(style.paddingLeft) + parseFloat(style.paddingRight) + parseFloat(style.borderLeftWidth) +
+          parseFloat(style.borderRightWidth);
+        element = element.parentElement;
+      }
+      return total;
+    }
+
+    function setDynamicMaxWidth() {
+      const tableContainer = containerRef.current!;
+      const totalPaddingsAndBorders = calculateTotalPaddingsAndBorders(tableContainer);
+      tableContainer.style.maxWidth = `calc(100vw - ${totalPaddingsAndBorders}px)`;
+    }
+
+    setDynamicMaxWidth();
+    window.addEventListener('resize', setDynamicMaxWidth);
+
+    return () => {
+      window.removeEventListener('resize', setDynamicMaxWidth);
+    };
+  }, []);
+  
+  return (
+    <div ref={containerRef} className={cn('relative w-full overflow-auto', containerClassName)}>
+      <table ref={ref} className={cn('w-full caption-bottom', className)} {...props} />
+    </div>
+  );
+});
 Table.displayName = 'Table';
 
 const TableHeader = forwardRef<HTMLTableSectionElement, HTMLAttributes<HTMLTableSectionElement>>(
